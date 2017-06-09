@@ -86,12 +86,44 @@ html
         
       section
         h3 The past
+        div.flex
+          div.package.flex.column.align-center
+            img(src="./images/node_logo.png" style="width: 70px;")
+            h4 react-pdf
+            ul
+              li Used Stack reconciler first, then fiber
+              li DOM specific elements instead of high level primitives
+              li Lacks of layout system
+              li Generates PDF file in file system
 
       section
         h3 The present
+        div.flex
+          div.package.flex.column.align-center
+            img(src="./images/pdf_logo.png" style="width: 70px;")
+            h4 @react-pdf/core
+            ul
+              li Uses fiber reconciler
+              li Handles PDF specific tasks
+              li Platform agnostic
+          div.package.flex.column.align-center
+            img(src="./images/node_logo.png" style="width: 70px;")
+            h4 @react-pdf/node
+            ul
+              li Uses the core to generate PDF file in the file system
+          div.package.flex.column.align-center
+            img(src="./images/react_logo.png" style="width: 70px;")
+            h4 @react-pdf/dom
+            ul
+              li Uses the core to render PDF file in the dom
 
       section
         h3 The future
+        div.package.flex.column.align-center
+          img(src="./images/react_logo.png" style="width: 70px;")
+          h4 @react-pdf/native
+          ul
+            li Uses the core to render PDF file in the the mobile environment
 
       section
         h1 The technical stuff
