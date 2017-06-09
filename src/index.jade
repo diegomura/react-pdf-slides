@@ -27,16 +27,62 @@ html
         p.fs12.italic Lin Clark - A Cartoon Intro to Fiber - 2017
       
       section
-        h3 Reddit and Echojs
+        h3 Publishing
+        img.big(src="./images/reddit-echo.png")
 
       section
-        h3 Stars
+        h3 Trending on Github
+        img.big(src="./images/gh.png")
 
       section
         h3 Receptions
+        img.big(src="./images/reception.png")
 
       section
-        h1 What react-pdf can do?
+        h1 What is react-pdf?
+      
+      section
+        div.flex.align-center
+          div.flex-grow-1
+            img(src="./images/react_logo.png" style="width: 200px;")
+          div
+            p ⟹
+          div.flex-grow-1
+            img(src="./images/pdf_logo.png" style="width: 200px;")
+
+      section
+        div.flex.align-center
+          div.flex-grow-1
+            img(src="./images/react_logo.png" style="width: 100px;")
+            pre.code-snippet.min-width-none
+              code.language-javascript.fs10.
+                &#60;Document&#62;
+                  &#60;Page size="A4" style={styles.page}&#62;
+                    &#60;View&#62;
+                      &#60;Text&#62;Hello world!&#60;/Text&#62;
+                    &#60;/View&#62;
+                  &#60;/Page&#62;
+                &#60;/Document&#62;
+          div
+            p ⟹
+          div.flex-grow-1
+            img(src="./images/pdf_logo.png" style="width: 100px;")
+            pre.code-snippet.min-width-none
+              code.language-javascript.fs10.
+                %PDF-1.7
+                3 0 obj
+                <<
+                /Type /Catalog
+                /Pages 4 0 R
+                >>
+                endobj
+                4 0 obj
+                <<
+                /Type /Pages
+                /Kids [60 0 R 106 0 R 140 0 R]
+                /Count 3
+                >>
+                // ...
         
       section
         h3 The past
@@ -54,25 +100,135 @@ html
         h2 React + Fiber
 
       section
-        h3 What's a parser?
+        h3 What's a compiler?
+        h4 3 primary stages 
+        ol
+          li Parsing: is taking raw code and turning it into a more abstract representation of the code.
+          li Transformation: takes this abstract representation and manipulates to do whatever the compiler wants it to.
+          li Code Generation: takes the transformed representation of the code and turns it into new code.
+        p.fs12.gray.right.mt2 Source: <a htef="https://github.com/thejameskyle/the-super-tiny-compiler">TheSuperTinyCompiler</a> by @thejameskyle
 
       section
         h3 What's a renderer?
+        p Module that manage how a React tree turns into the underlying platform calls
+        h4.mt2 Official renderers
+        ul
+          li React DOM Renderers
+          li React Native Renderer
+          li React Test Renderer
+          li React-art Renderer
 
       section
         h3 What's fiber?
+        p React Fiber is an <i>ongoing</i> reimplementation of React's core algorithm
+        h4.mt2 Features
+        ul
+          li Increase suitability for animation, layout, and gestures. 
+          li Incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames.
+          li Ability to pause, abort, or reuse work as new updates come in
+          li Ability to assign priority to different types of updates
+          li <b>Defines a public API for renderers</b>
+        p.fs12.gray.right.mt2 Source: <a href="https://github.com/acdlite/react-fiber-architecture">react-fiber-architecture</a> by @acdlite
+      
+      section
+        h3 Fiber API
+        pre.code-snippet
+          code.language-javascript.fs10.
+            import ReactFiberReconciler from 'react-dom/lib/ReactFiberReconciler';
+
+            const PDFRenderer = ReactFiberReconciler({
+              getRootHostContext() {},
+              getChildHostContext() {},
+              prepareForCommit() {},
+              resetAfterCommit() {},
+              createInstance(type, props, rootContainerInstance, hostContext, internalInstanceHandle) {},
+              appendInitialChild(parentInstance, child) {},
+              finalizeInitialChildren(testElement, type, props, rootContainerInstance) {},
+              prepareUpdate(testElement, type, oldProps, newProps, hostContext) {},
+              commitUpdate(instance, type, oldProps, newProps, rootContainerInstance, internalInstanceHandle) {},
+              commitMount(instance, type, newProps, rootContainerInstance, internalInstanceHandle) {},
+              shouldSetTextContent(props) {},
+              resetTextContent(testElement) {},
+              createTextInstance(text, rootContainerInstance, hostContext, internalInstanceHandle) {},
+              commitTextUpdate(textInstance, oldText, newText) {},
+              appendChild(parentInstance, child) {},
+              insertBefore(parentInstance, child, beforeChild) {},
+              removeChild(parentInstance, child) {},
+              scheduleAnimationCallback(fn) {},
+              scheduleDeferredCallback(fn) {},
+              getPublicInstance(inst) {},
+              useSyncScheduling: true
+            });
 
       section(data-bespoke-backdrop='react-background')
         h2 React Primitives
+        
+      section
+        h3 Ideal set of primitives around building React applications, regardless of Platform
+        h4.mt2 Primitives
+        ol
+          li Animated: Pulled from the animated project.
+          li StyleSheet: Follows React Native's StyleSheet API.
+          li View: A base component for Layout.
+          li Text: A base component for Text rendering.
+          li Image: A base component for Image rendering.
+          li Touchable: A base component for interaction.
+        p.fs12.gray.right.mt2 Source: <a href="https://github.com/lelandrichardson/react-primitives">react-primitives</a> by @lelandrichardson
 
       section(data-bespoke-backdrop='lerna-background')
         h2 Lerna
+      
+      section
+        h3 A tool for managing JavaScript projects with multiple packages (aka monorepos)
+        h4.mt2 Project architecture
+        pre.code-snippet.min-width-none
+          code.language-javascript.fs10.
+            my-lerna-repo/
+              package.json
+              packages/
+                package-1/
+                  package.json
+                package-2/
+                  package.json
+        h4 Commands
+        pre.code-snippet.min-width-none
+          code.language-javascript.fs10.
+            lerna bootstrap // link dependencies in the repo together
+            lerna publish  // help publish any updated packages
+        p.fs12.gray.right.mt2 Source: <a href="https://github.com/lerna/lerna">lerna</a>
 
       section(data-bespoke-backdrop='yoga-background')
         h2 Yoga
+      
+      section
+        h3 Cross-platform layout engine that implements Flexbox
 
       section(data-bespoke-backdrop='pdfkit-background')
         h2 PDFKit
+      
+      section
+        h3 A JavaScript PDF generation library for Node and the browser.
+        h4.mt2 Example
+        pre.code-snippet.min-width-none
+          code.language-javascript.fs12.
+            import PDFDocument from 'pdfkit';
+
+            const doc = new PDFDocument();
+            doc.pipe(fs.createWriteStream('output.pdf'));
+
+            doc.addPage();
+
+            doc.font('fonts/PalatinoBold.ttf')
+             .fontSize(25)
+             .text('Some text with an embedded font!', 100, 100);
+
+            doc.image('path/to/image.png', {
+             fit: [250, 300],
+             align: 'center',
+             valign: 'center'
+            });
+
+            doc.end()
 
       section
         h2 Demo
